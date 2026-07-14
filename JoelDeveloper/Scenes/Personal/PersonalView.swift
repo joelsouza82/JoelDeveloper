@@ -30,7 +30,7 @@ struct PersonalView: View {
                 }
             }
 
-            Section(header: Text("Contato")) {
+            Section(header: Text("Contatos")) {
                 HStack {
                     Image(systemName: "phone.fill")
                         .foregroundStyle(AppColors.primaryBlue)
@@ -45,20 +45,6 @@ struct PersonalView: View {
             }
 
             Section(header: Text("Linkedin")) {
-                if let website = viewModel.personal?.website, !website.isEmpty {
-                    Button {
-                        if let url = URL(string: website) { openURL(url) }
-                    } label: {
-                        HStack {
-                            Image(systemName: "link")
-                                .foregroundStyle(AppColors.primaryBlue)
-                            Text(website)
-                                .lineLimit(1)
-                                .truncationMode(.tail)
-                        }
-                    }
-                }
-
                 if let linkedin = viewModel.personal?.linkedin, !linkedin.isEmpty {
                     Button {
                         if let url = URL(string: linkedin) { openURL(url) }
@@ -73,6 +59,7 @@ struct PersonalView: View {
                     }
                 }
             }
+
             Section(header: Text("Github")) {
                 if let github = viewModel.personal?.github, !github.isEmpty {
                     Button {
