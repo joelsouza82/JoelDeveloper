@@ -20,7 +20,6 @@ final class AppCoordinator: ObservableObject {
 
     @Published var navigationPath = NavigationPath()
 
-    // Convenience navigation helper
     func navigate(to route: Route) {
         navigationPath.append(route)
     }

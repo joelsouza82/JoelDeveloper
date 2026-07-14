@@ -9,7 +9,7 @@ import Foundation
 import Combine
 
 class HomeViewModel: ObservableObject {
-    @Published var sections: [AppSection] = []
+    @Published var sections: [Home] = []
     
     init() {
         loadData()
@@ -17,10 +17,10 @@ class HomeViewModel: ObservableObject {
     
     private func loadData() {
         sections = [
-            AppSection(title: "Dados Pessoais", icon: "person.fill", route: .personal),
-            AppSection(title: "Experiências", icon: "briefcase.fill", route: .experience),
-            AppSection(title: "Diplomas e Cursos", icon: "graduationcap.fill", route: .courses),
-            AppSection(title: "Outras Informações", icon: "ellipsis", route: .others)
+            Home(title: "Dados Pessoais", icon: "person.fill", route: .personal),
+            Home(title: "Experiências", icon: "briefcase.fill", route: .experience),
+            Home(title: "Diplomas e Cursos", icon: "graduationcap.fill", route: .courses),
+            Home(title: "Outras Informações", icon: "ellipsis", route: .others)
         ]
     }
 }
