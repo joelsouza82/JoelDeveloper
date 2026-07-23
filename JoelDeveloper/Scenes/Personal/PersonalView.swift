@@ -12,13 +12,39 @@ struct PersonalView: View {
     @Environment(\.openURL) private var openURL
 
     var body: some View {
+        Group {
+            if viewModel.isLoading {
+                ProgressView("Carregando...")
+                    .frame(maxWidth: .infinity, maxHeight: .infinity)
+            } else if let errorMessage = viewModel.errorMessage {
+                ContentUnavailableView {
+                    Label("Erro ao carregar", systemImage: "exclamationmark.triangle")
+                } description: {
+                    Text(errorMessage)
+                } actions: {
+                    Button("Tentar novamente") {
+                        viewModel.loadData()
+                    }
+                }
+            } else {
+                personalContent
+            }
+        }
+        .navigationTitle("🏠 Dados Pessoais")
+        .toolbarColorScheme(.dark, for: .navigationBar)
+        .navigationBarTitleDisplayMode(.inline)
+        .toolbarBackground(AppColors.primaryBlue, for: .navigationBar)
+        .toolbarBackground(.visible, for: .navigationBar)
+    }
+
+    private var personalContent: some View {
         List {
             Section(header: Text("Endereço")) {
                 HStack {
                     Image(systemName: "house.fill")
                         .foregroundStyle(AppColors.primaryBlue)
                     VStack(alignment: .leading) {
-                        Text(viewModel.personal?.adress ?? "-")
+                        Text(viewModel.personal?.address ?? "-")
                             .font(.body)
                         Text("\(viewModel.personal?.neighborhood ?? "-") — \(viewModel.personal?.city ?? "-") / \(viewModel.personal?.state ?? "-")")
                             .font(.caption)
@@ -77,11 +103,6 @@ struct PersonalView: View {
             }
         }
         .listStyle(.insetGrouped)
-        .navigationTitle("🏠 Dados Pessoais")
-        .toolbarColorScheme(.dark, for: .navigationBar)
-        .navigationBarTitleDisplayMode(.inline)
-        .toolbarBackground(AppColors.primaryBlue, for: .navigationBar)
-        .toolbarBackground(.visible, for: .navigationBar)
     }
 }
 
