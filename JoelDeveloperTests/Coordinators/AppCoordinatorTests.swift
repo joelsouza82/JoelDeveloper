@@ -5,6 +5,7 @@
 
 import XCTest
 @testable import JoelDeveloper
+internal import SwiftUI
 
 final class AppCoordinatorTests: XCTestCase {
     func testNavigateAppendsRouteToNavigationPath() {

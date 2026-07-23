@@ -25,7 +25,7 @@ enum StubPersonalService {
     static let success = SuccessStub()
     static let failure = FailureStub()
 
-    private struct SuccessStub: PersonalServiceProtocol {
+    struct SuccessStub: PersonalServiceProtocol {
         func fetchPersonal() async throws -> Personal {
             Personal(
                 id: 1,
@@ -43,7 +43,7 @@ enum StubPersonalService {
         }
     }
 
-    private struct FailureStub: PersonalServiceProtocol {
+    struct FailureStub: PersonalServiceProtocol {
         func fetchPersonal() async throws -> Personal {
             throw APIError.httpError(statusCode: 500)
         }
