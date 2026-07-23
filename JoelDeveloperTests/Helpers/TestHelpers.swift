@@ -4,6 +4,7 @@
 //
 
 import XCTest
+@testable import JoelDeveloper
 
 enum TestHelpers {
     static let samplePersonalJSON = """
