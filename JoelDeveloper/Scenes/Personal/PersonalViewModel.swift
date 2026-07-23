@@ -16,9 +16,11 @@ class PersonalViewModel: ObservableObject {
 
     private let service: PersonalServiceProtocol
 
-    init(service: PersonalServiceProtocol = PersonalService()) {
+    init(service: PersonalServiceProtocol = PersonalService(), autoLoad: Bool = true) {
         self.service = service
-        loadData()
+        if autoLoad {
+            loadData()
+        }
     }
 
     func loadData() {

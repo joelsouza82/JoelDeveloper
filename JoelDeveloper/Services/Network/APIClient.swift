@@ -8,14 +8,16 @@ import Foundation
 struct APIClient {
     static let baseURL = "https://go-api-nzg1.onrender.com"
 
+    private let baseURL: String
     private let session: URLSession
 
-    init(session: URLSession = .shared) {
+    init(baseURL: String = APIClient.baseURL, session: URLSession = .shared) {
+        self.baseURL = baseURL
         self.session = session
     }
 
     func fetch<T: Decodable>(_ endpoint: String, type: T.Type) async throws -> T {
-        guard let url = URL(string: "\(Self.baseURL)\(endpoint)") else {
+        guard let url = URL(string: "\(baseURL)\(endpoint)") else {
             throw APIError.invalidURL
         }
 
