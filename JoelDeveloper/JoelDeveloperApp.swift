@@ -18,7 +18,7 @@ struct JoelDeveloperApp: App {
                     .navigationDestination(for: AppCoordinator.Route.self) { route in
                         switch route {
                         case .personal:
-                            PersonalView(viewModel: PersonalViewModel())
+                            PersonalView(viewModel: PersonalViewModel(service: PersonalServiceFactory.make()))
                         case .experience:
                             Text("Experiências")
                         case .courses:
